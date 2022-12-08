@@ -30,6 +30,14 @@ $(".post-wrapper").slick({
     ]
 });
 
+
+
+function priceWithoutZeros(num, precision) {
+    return num.toFixed(precision).replace(/\.0+$/, '')
+}
+
+
+
 function queryFetch(query) {
     return (fetch('https://api.nosto.com/v1/graphql', {
         method: 'POST',
@@ -41,6 +49,29 @@ function queryFetch(query) {
     })
         .then(res => res.json())
         .then(data => {
+
+            const newArr = data.data.products.products.sort((a, b) => {
+                return b.scores.week.views - a.scores.week.views
+            })
+
+            const bestSellerDiv = document.getElementById('best-seller-wrapper')
+            const image = document.createElement('img')
+            const aLink = document.createElement('a')
+            const figcaption = document.createElement('figcaption')
+
+            figcaption.innerText = 'BEST SELLER THIS WEEK!'
+            image.className = 'best-seller-image'
+            image.loading = 'lazy'
+            image.src = newArr[0].imageUrl
+            image.alt = 'best-seller'
+            aLink.href = newArr[0].url
+
+            bestSellerDiv.append(figcaption)
+            bestSellerDiv.append(aLink)
+            aLink.append(image)
+
+            newArr.shift()
+
             data.data.products.products.forEach((product) => {
 
                 const outsideDiv = document.getElementById('post-wrapper')
@@ -80,13 +111,10 @@ function queryFetch(query) {
     )
 }
 
-function priceWithoutZeros(num, precision) {
-    return num.toFixed(precision).replace(/\.0+$/, '')
-}
 
 queryFetch(`
 query {
-    products(limit: 5) {
+    products(limit: 50) {
         products {
             name
             price

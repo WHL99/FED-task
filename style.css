@@ -35,7 +35,8 @@
 
 .post-slider .post-wrapper .post {
     width: 300px;
-    height: 330px;
+    height: 300px;
+
     margin: 10px;
     display: inline-block;
     background: white;
@@ -46,15 +47,12 @@
 .post-slider .post-wrapper .post .post-info {
     height: 130px;
     padding: 0px 5px;
-
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .post-slider .post-wrapper .post .slider-image {
@@ -68,6 +66,14 @@
 
 .font {
     margin: 1vh;
+}
+
+.best-seller-wrapper {
+    height: 5vh;
+}
+
+.best-seller-image {
+    height: 220px;
 }
 
 @media only screen and (max-width: 934px) {
