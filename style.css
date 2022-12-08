@@ -1,0 +1,71 @@
+.post-slider {
+    position: relative;
+}
+
+.post-slider .slider-title {
+    text-align: center;
+    margin: 30px auto;
+}
+
+.post-slider .next {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    font-size: 2em;
+    color: #006669;
+    cursor: pointer;
+}
+
+.post-slider .prev {
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    font-size: 2em;
+    color: #006669;
+    cursor: pointer;
+}
+
+.post-slider .post-wrapper {
+    width: 84%;
+    height: 620px;
+    margin: 0px auto;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.post-slider .post-wrapper .post {
+    width: 300px;
+    height: 330px;
+    margin: 10px;
+    display: inline-block;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 1rem 1rem 1rem -1rem #a42a2a28;
+}
+
+.post-slider .post-wrapper .post .post-info {
+    height: 130px;
+    padding: 0px 5px;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.post-slider .post-wrapper .post .slider-image {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.post-wrapper {
+    background-color: #527d7d1f;
+}
+
+.font {
+    margin: 1vh;
+}
