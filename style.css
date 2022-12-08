@@ -69,3 +69,42 @@
 .font {
     margin: 1vh;
 }
+
+@media only screen and (max-width: 934px) {
+    .post {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .post {
+        height: auto;
+    }
+
+    .post-image {
+        width: 100%;
+    }
+
+    .post {
+        position: static;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .post-slider .next {
+        right: 10px;
+    }
+
+    .post-slider .prev {
+        left: 10px;
+    }
+
+    .post-info {
+        margin-top: 50px;
+    }
+
+    .font {
+        margin: 1px;
+    }
+}
