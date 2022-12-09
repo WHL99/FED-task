@@ -30,13 +30,9 @@ $(".post-wrapper").slick({
     ]
 });
 
-
-
 function priceWithoutZeros(num, precision) {
-    return num.toFixed(precision).replace(/\.0+$/, '')
+    return num?.toFixed(precision).replace(/\.0+$/, '')
 }
-
-
 
 function queryFetch(query) {
     return (fetch('https://api.nosto.com/v1/graphql', {
@@ -50,7 +46,7 @@ function queryFetch(query) {
         .then(res => res.json())
         .then(data => {
 
-            const newArr = data.data.products.products.sort((a, b) => {
+            const sortedByBestSellerArr = data.data.products.products.sort((a, b) => {
                 return b.scores.week.views - a.scores.week.views
             })
 
@@ -60,20 +56,25 @@ function queryFetch(query) {
             const figcaption = document.createElement('figcaption')
 
             figcaption.innerText = 'BEST SELLER THIS WEEK!'
+            figcaption.className = 'best-seller-fig'
+
             image.className = 'best-seller-image'
             image.loading = 'lazy'
-            image.src = newArr[0].imageUrl
+            image.src = sortedByBestSellerArr[0].imageUrl
             image.alt = 'best-seller'
-            aLink.href = newArr[0].url
+            aLink.href = sortedByBestSellerArr[0].url
 
             bestSellerDiv.append(figcaption)
             bestSellerDiv.append(aLink)
             aLink.append(image)
 
-            newArr.shift()
+            sortedByBestSellerArr.shift()
+
+            const sortedByMostViewedArr = data.data.products.products.sort((a, b) => {
+                return b.scores.week.views - a.scores.week.views
+            })
 
             data.data.products.products.forEach((product) => {
-
                 const outsideDiv = document.getElementById('post-wrapper')
 
                 const divMD = document.createElement('div')
@@ -94,7 +95,6 @@ function queryFetch(query) {
                 image.loading = 'lazy'
                 image.src = product.imageUrl
                 image.alt = 'product-photo'
-
                 title.innerText = product.brand
                 subTitle.innerText = product.name
                 price.innerText = `€ ${priceWithoutZeros(product.price, 2)}`
@@ -106,11 +106,17 @@ function queryFetch(query) {
                 divForInfo.append(price)
                 outsideDiv.append(divMD)
                 divMD.append(divForInfo)
+
+                if (product[0]) {
+                    const figcaption = document.createElement('figcaption')
+                    figcaption.innerText = 'MOST VIEWED!'
+                    figcaption.className = 'most-viewed-fig'
+                    divMD.append(figcaption)
+                }
             })
         })
     )
 }
-
 
 queryFetch(`
 query {

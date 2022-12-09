@@ -1,3 +1,12 @@
+.page-wrapper {
+    min-height: 100%;
+}
+
+.page-wrapper a:hover {
+    color: #006669;
+}
+
+
 .post-slider {
     position: relative;
 }
@@ -27,7 +36,7 @@
 
 .post-slider .post-wrapper {
     width: 84%;
-    height: 620px;
+    height: 580px;
     margin: 0px auto;
     overflow: hidden;
     padding: 10px;
@@ -68,12 +77,33 @@
     margin: 1vh;
 }
 
+.content {
+    width: 90%;
+    margin: 30px auto 30px;
+}
+
+.content .main-content {
+    width: 70%;
+    float: left;
+}
+
 .best-seller-wrapper {
     height: 5vh;
 }
 
 .best-seller-image {
     height: 220px;
+}
+
+#best-seller-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.best-seller-fig {
+    color: red;
+    font-weight: 900;
 }
 
 @media only screen and (max-width: 934px) {
